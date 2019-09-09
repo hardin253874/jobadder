@@ -38,8 +38,11 @@ export class HomeComponent implements OnInit {
     const that = this;
     Object.keys(this.candidates).forEach(function(index) {
       const candidateSkillTags = that.candidates[index].skillTags.split(',');
-      if (that.compare(jobSkills, candidateSkillTags) > 0.2) {
-        that.matchedCandidates .push(that.candidates[index]);
+      const matchRatio = that.compare(jobSkills, candidateSkillTags);
+      if (matchRatio > 0.1) {
+        const matchedCandidate = that.candidates[index];
+        matchedCandidate.matchRatio = matchRatio;
+        that.matchedCandidates .push(matchedCandidate);
       }
     });
 

@@ -30,11 +30,16 @@
       </div>
     </div>
     <div class="row" *ngIf="matchedCandidates && matchedCandidates.length > 0">
+       <div class="row" style="margin-bottom: 1rem">
+         <div>
+           <span>There are {{matchedCandidates.length}} candidates match this job's skill (the match ratio more than 0.1)</span>
+         </div>
+       </div>
       <div class="row" *ngFor="let candidate of matchedCandidates"  style="margin-bottom: 1rem">
 
         <div><span class="card-title">Name:</span>{{candidate.name}}</div>
         <div><span class="card-title">Skill Tag:</span>{{showUniqueString(candidate.skillTags)}}</div>
-        <div><span class="card-title">Match:</span>{{compareSkills(selectedJob.skills,candidate.skillTags)}}</div>
+        <div><span class="card-title">Match:</span>{{candidate.matchRatio}}</div>
 
       </div>
     </div>
