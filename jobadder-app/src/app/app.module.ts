@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
+import { OrderBy } from './pipes/orderby';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    OrderBy
   ],
   imports: [
     BrowserModule,
