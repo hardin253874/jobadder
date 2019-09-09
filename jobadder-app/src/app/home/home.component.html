@@ -1,0 +1,42 @@
+<div class="toolbar" role="banner">
+  <img
+    alt="Jobadder Logo"
+    src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/JobAdder-Logo.svg"
+  />
+  <span>Welcome to JobAdder</span>
+  <div class="spacer"></div>
+</div>
+<div class="content" role="main">
+  <div class="card highlight-card card-small">
+    <span>Candidates match app is running! there are {{jobs.length}} jobs and {{candidates.length}} candidates in system</span>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+      Match candidates:
+      <select [(ngModel)]="selectedJobId"  (ngModelChange)="findCandidates($event)" >
+        <option *ngFor="let j of jobs" [ngValue]="j.jobId">{{j.name}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="row" *ngIf="selectedJob" style="margin-bottom: 1rem">
+      <div><span class="card-title">Name:</span>{{selectedJob.name}}</div>
+      <div><span class="card-title">Company:</span>{{selectedJob.company}}</div>
+      <div><span class="card-title">Skills:</span>{{showUniqueString(selectedJob.skills)}}</div>
+    </div>
+    <div class="row" *ngIf="matchedCandidates && matchedCandidates.length === 0">
+      <div>
+        <span>There is no candidate match this job's skill</span>
+      </div>
+    </div>
+    <div class="row" *ngIf="matchedCandidates && matchedCandidates.length > 0">
+      <div class="row" *ngFor="let candidate of matchedCandidates"  style="margin-bottom: 1rem">
+
+        <div><span class="card-title">Name:</span>{{candidate.name}}</div>
+        <div><span class="card-title">Skill Tag:</span>{{showUniqueString(candidate.skillTags)}}</div>
+        <div><span class="card-title">Match:</span>{{compareSkills(selectedJob.skills,candidate.skillTags)}}</div>
+
+      </div>
+    </div>
+  </div>
+</div>
